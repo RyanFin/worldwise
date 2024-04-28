@@ -1,10 +1,9 @@
 import PageNav from "../components/PageNav";
 
-export default function Pricing() {
+export default function PageNotFound() {
   return (
     <div>
-      <PageNav />
-      <h1>Pricing</h1>
+      <PageNav /> <h1>PageNotFound</h1>
     </div>
   );
 }
