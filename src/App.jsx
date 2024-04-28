@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useReducer } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const initialState = {
+    bgColor: "#FAEFDE",
+  };
 
+  // handle state changes here
+  function reducer(state, action) {
+    switch (action.type) {
+      case "green":
+        return { ...state, bgColor: action.payload };
+      case "blue":
+        return { ...state, bgColor: action.payload };
+      case "yellow":
+        return { ...state, bgColor: action.payload };
+      case "red":
+        return { ...state, bgColor: action.payload };
+      default:
+        return state;
+    }
+  }
+
+  const [{ bgColor }, dispatch] = useReducer(reducer, initialState);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div
+      style={{ backgroundColor: bgColor, minHeight: "100vh", padding: "20px" }}
+    >
+      <h1>WorldWise</h1>
+      <p>Click me and see the effects: </p>
+      <button
+        onClick={() => {
+          dispatch({ type: "green", payload: "#48a156" });
+        }}
+      >
+        Green
+      </button>
 
-export default App
+      <button
+        onClick={() => {
+          dispatch({ type: "blue", payload: "#3e7eed" });
+        }}
+      >
+        Blue
+      </button>
+
+      <button
+        onClick={() => {
+          dispatch({ type: "blue", payload: "#edd237" });
+        }}
+      >
+        Yellow
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: "blue", payload: "#e8321e" });
+        }}
+      >
+        Red
+      </button>
+    </div>
+  );
+}
