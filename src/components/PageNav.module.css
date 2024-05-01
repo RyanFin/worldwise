@@ -1,5 +1,10 @@
 .nav {
-  background-color: rgb(188, 80, 186);
+  background-color: rgb(50, 98, 135);
+}
+
+/* active class given to use by ReactRouter. global is used to ensure that css modules can get these styles */
+.nav :global(.active) {
+  background-color: rgb(210, 189, 189);
 }
 
 .nav ul {
