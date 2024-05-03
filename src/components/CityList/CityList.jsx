@@ -3,6 +3,7 @@ import Spinner from "../Spinner/Spinner";
 // import CityItem from "../CityItem/CityItem";
 import PropTypes from "prop-types";
 import CityItem from "../CityItem/CityItem";
+import Message from "../Message/Message";
 
 function CityList({ cities, isLoading }) {
   // Define prop types using PropTypes
@@ -13,10 +14,14 @@ function CityList({ cities, isLoading }) {
     // Add more prop types as needed
   };
 
-  console.log(isLoading);
-
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!cities.length) {
+    return (
+      <Message message="Add your first city by clicking on a city on the map." />
+    );
   }
 
   return (
