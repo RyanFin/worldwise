@@ -23,6 +23,7 @@
 }
 
 /* CSS Modules feature */
+/* styling of the active class */
 .nav a:global(.active) {
   background-color: var(--color-dark--0);
 }
