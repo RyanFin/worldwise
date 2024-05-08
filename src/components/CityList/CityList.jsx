@@ -4,8 +4,9 @@ import Spinner from "../Spinner/Spinner";
 import PropTypes from "prop-types";
 import CityItem from "../CityItem/CityItem";
 import Message from "../Message/Message";
+import { useCities } from "../../contexts/CitiesContext";
 
-function CityList({ cities, isLoading }) {
+function CityList() {
   // Define prop types using PropTypes
   CityList.propTypes = {
     // Example props
@@ -13,6 +14,8 @@ function CityList({ cities, isLoading }) {
     isLoading: PropTypes.bool,
     // Add more prop types as needed
   };
+
+  const { cities, isLoading } = useCities();
 
   if (isLoading) {
     return <Spinner />;

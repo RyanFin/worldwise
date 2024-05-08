@@ -12,3 +12,5 @@
 ```
 
 3. Add `import eslint from "vite-plugin-eslint";` and `plugins: [react(), eslint()],` to `vite.config.js`
+
+4. Retrieve a single object: http://localhost:9000/cities/73930385

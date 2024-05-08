@@ -3,8 +3,9 @@ import styles from "./CountryList.module.css";
 import Spinner from "../Spinner/Spinner";
 import Message from "../Message/Message";
 import CountryItem from "../CountryItem/CountryItem";
+import { useCities } from "../../contexts/CitiesContext";
 
-function CountryList({ cities, isLoading }) {
+function CountryList() {
   // Define prop types using PropTypes
   CountryList.propTypes = {
     // Example props
@@ -12,6 +13,8 @@ function CountryList({ cities, isLoading }) {
     isLoading: PropTypes.bool,
     // Add more prop types as needed
   };
+
+  const { cities, isLoading } = useCities();
 
   if (isLoading) {
     return <Spinner />;
