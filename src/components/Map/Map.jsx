@@ -11,6 +11,8 @@ import {
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
+import { useGeolocation } from "../../hooks/useGeolocation";
+import Button from "../Button/Button";
 
 export default function Map() {
   /* eslint-disable-next-line no-unused-vars */
@@ -29,6 +31,14 @@ export default function Map() {
   const startingLng = -0.141944;
 
   const [mapPosition, setMapPosition] = useState([startingLat, startingLng]);
+
+  // retrieve specific values from our useGeolocation custom hook during destructuring.
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
+
   // const mapPos = [
   //   // if null set a default starter city
   //   mapLat === null ? startingLat : mapLat,
@@ -45,10 +55,28 @@ export default function Map() {
     [mapLat, mapLng]
   );
 
+  // run this useEffect code everytime the GeolocationPosition changes
+  // react to the side effect with this method
+  useEffect(
+    function () {
+      // check if geolocationPosition is not null. If not null execute if code block ...
+      if (geolocationPosition) {
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+      }
+    },
+    [geolocationPosition]
+  );
+
   return (
     // navigate to 'form' url on click
     // <div className={styles.mapContainer} onClick={() => navigate("form")}>
     <div className={styles.mapContainer}>
+      {!geolocationPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "loading..." : "Use your position"}
+        </Button>
+      )}
+
       <MapContainer
         // center={mapPos}
         // center={[mapLat, mapLng]}
