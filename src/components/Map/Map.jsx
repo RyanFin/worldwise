@@ -13,17 +13,30 @@ export default function Map() {
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   // eslint-disable-next-line no-unused-vars
-  const lat = searchParams.get("lat");
+  const mapLat = searchParams.get("lat"); // get value from URL
   // eslint-disable-next-line no-unused-vars
-  const lng = searchParams.get("lng");
+  const mapLng = searchParams.get("lng");
+
+  const startingLat = 51.500833;
+  const startingLng = -0.141944;
+
+  console.log([mapLat, mapLng]);
+  console.log(mapPosition);
 
   return (
     // navigate to 'form' url on click
-    <div className={styles.mapContainer} onClick={() => navigate("form")}>
+    // <div className={styles.mapContainer} onClick={() => navigate("form")}>
+    <div className={styles.mapContainer}>
       <MapContainer
-        center={mapPosition}
-        zoom={13}
-        scrollWheelZoom={false}
+        center={[
+          // if null set a default starter city
+          mapLat === null ? startingLat : mapLat,
+          mapLng === null ? startingLng : mapLng,
+        ]}
+        // center={[mapLat, mapLng]}
+        // center={mapPosition}
+        zoom={6}
+        scrollWheelZoom={true}
         className={styles.map}
       >
         <TileLayer
