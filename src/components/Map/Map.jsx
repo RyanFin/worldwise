@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
 
@@ -28,7 +35,7 @@ export default function Map() {
   //   mapLng === null ? startingLng : mapLng,
   // ];
 
-  // useEffect is a synchronisation method
+  // useEffect is a synchronisation mechanism
   useEffect(
     function () {
       if (mapLat && mapLng) {
@@ -70,12 +77,13 @@ export default function Map() {
           // position={[mapLat || startingLat, mapLng || startingLng]}
           position={mapPosition}
         />
+        <DetectClick />
       </MapContainer>
     </div>
   );
 }
 
-// separate component
+// separate component that will change the location of the map based on the passed in position value
 function ChangeCenter({ position }) {
   ChangeCenter.propTypes = {
     position: PropTypes.array,
@@ -85,4 +93,15 @@ function ChangeCenter({ position }) {
   map.setView(position);
 
   return null;
+}
+
+// component will load the form details of the selected country
+function DetectClick() {
+  const navigate = useNavigate();
+  useMapEvents({
+    click: (e) => {
+      console.log(e);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+    },
+  });
 }
