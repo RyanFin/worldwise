@@ -9,6 +9,7 @@ CitiesProvider.propTypes = {
 };
 function CitiesProvider({ children }) {
   const BASE_URL = "http://localhost:9000";
+  // context values (state)
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState({});
@@ -44,6 +45,7 @@ function CitiesProvider({ children }) {
 
   return (
     <CitiesContext.Provider
+      // context values
       value={{
         cities,
         isLoading,
