@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import {
   MapContainer,
@@ -13,18 +13,15 @@ import { useEffect, useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import Button from "../Button/Button";
+import { useUrlPosition } from "../../hooks/useUrlPosition";
 
 export default function Map() {
   /* eslint-disable-next-line no-unused-vars */
   const navigate = useNavigate();
   const { cities } = useCities();
+
   // eslint-disable-next-line no-unused-vars
-  // eslint-disable-next-line no-unused-vars
-  const [searchParams] = useSearchParams();
-  // eslint-disable-next-line no-unused-vars
-  const mapLat = searchParams.get("lat"); // get value from URL
-  // eslint-disable-next-line no-unused-vars
-  const mapLng = searchParams.get("lng");
+  const [mapLat, mapLng] = useUrlPosition();
 
   // const values as these values are NOT changing anytime soon
   const startingLat = 51.500833;
@@ -128,7 +125,6 @@ function DetectClick() {
   const navigate = useNavigate();
   useMapEvents({
     click: (e) => {
-      console.log(e);
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
