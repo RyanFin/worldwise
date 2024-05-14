@@ -14,3 +14,11 @@
 3. Add `import eslint from "vite-plugin-eslint";` and `plugins: [react(), eslint()],` to `vite.config.js`
 
 4. Retrieve a single object: http://localhost:9000/cities/73930385
+
+# Map with leaflet
+
+- installation: `$ npm install react react-dom leaflet` then `$ npm install react-leaflet`
+
+# Date Picker
+
+- installation: `$ npm i react-datepicker`

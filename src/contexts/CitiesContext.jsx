@@ -43,6 +43,27 @@ function CitiesProvider({ children }) {
     }
   }
 
+  async function createCity(newCity) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+
+      // keep the UI state in sync with the remote state (our fake API server)
+      setCities((cities) => [...cities, data]);
+    } catch {
+      alert("There was an error loading data...");
+    } finally {
+      // reset isLoading state back to false
+      setIsLoading(false);
+    }
+  }
+
   return (
     <CitiesContext.Provider
       // context values
@@ -51,6 +72,7 @@ function CitiesProvider({ children }) {
         isLoading,
         currentCity,
         getCity,
+        createCity,
       }}
     >
       {/* children represents the entire App Component tree that is to be nested inside. */}
