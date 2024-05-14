@@ -57,7 +57,25 @@ function CitiesProvider({ children }) {
       // keep the UI state in sync with the remote state (our fake API server)
       setCities((cities) => [...cities, data]);
     } catch {
-      alert("There was an error loading data...");
+      alert("There was an error creating the city...");
+    } finally {
+      // reset isLoading state back to false
+      setIsLoading(false);
+    }
+  }
+
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+
+      // filter out the cities that equal the deleted id so that the object is filtered out (deleted)
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch {
+      alert("There was an error deleting city...");
     } finally {
       // reset isLoading state back to false
       setIsLoading(false);
@@ -73,6 +91,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}
     >
       {/* children represents the entire App Component tree that is to be nested inside. */}

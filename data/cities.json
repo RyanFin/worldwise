@@ -47,30 +47,6 @@
         "lng": -0.141944
       },
       "id": "98443198"
-    },
-    {
-      "id": "55b2",
-      "cityName": "Thiais",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-05-14T18:49:34.092Z",
-      "notes": "So close to the Eiffel Tower",
-      "position": {
-        "lat": "48.76343113791796",
-        "lng": "2.3730468750000004"
-      }
-    },
-    {
-      "id": "6d11",
-      "cityName": "Steinsel",
-      "country": "Luxembourg",
-      "emoji": "🇱🇺",
-      "date": "2024-05-14T19:33:34.077Z",
-      "notes": "steinbeck",
-      "position": {
-        "lat": "49.66762782262194",
-        "lng": "6.108398437500001"
-      }
     }
   ]
 }

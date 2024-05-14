@@ -12,11 +12,18 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function CityItem({ city }) {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
   console.log(city);
   CityItem.propTypes = {
     city: PropTypes.array,
   };
+
+  //  use handleClick() function so that the app does not set the map to the map marker
+  function handleClick(e) {
+    // prevent page refresh in the SPA
+    e.preventDefault();
+    deleteCity(id);
+  }
 
   // destructure most important items out of the 'city' object
   const { cityName, emoji, date, id, position } = city;
@@ -32,7 +39,9 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>({formatDate(date)})</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleClick}>
+          &times;
+        </button>
       </Link>
     </li>
   );
