@@ -11,6 +11,7 @@ import Spinner from "../Spinner/Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCities } from "../../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   let codePoints = [0];
@@ -27,7 +28,8 @@ function Form() {
   // custom hook that fetches the latitude and longitudinal values from the URL (URL state)
   const [lat, lng] = useUrlPosition();
 
-  const { createCity } = useCities();
+  const { createCity, isLoading } = useCities();
+  const navigate = useNavigate();
 
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -92,7 +94,7 @@ function Form() {
     [lat, lng, country, setEmoji]
   );
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // prevent an application hard reload. As we do not want the app to reload in a Single-page application such as in React
     e.preventDefault();
 
@@ -109,7 +111,10 @@ function Form() {
       position: { lat, lng },
     };
 
-    createCity(newCity);
+    // make create city an async function
+    await createCity(newCity);
+    // load app component immediately
+    navigate("/app/cities");
   }
 
   // Render the Spinner component in the time that the form 'is loading'
@@ -127,7 +132,10 @@ function Form() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input

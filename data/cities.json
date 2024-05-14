@@ -49,66 +49,6 @@
       "id": "98443198"
     },
     {
-      "id": "20cc",
-      "cityName": "Pitlochry",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2024-05-14T18:38:15.572Z",
-      "notes": "enjoyed the fresh grass ",
-      "position": {
-        "lat": "56.68037378950137",
-        "lng": "-3.8671875000000004"
-      }
-    },
-    {
-      "id": "e8b4",
-      "cityName": "Peebles",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2024-05-14T18:38:30.274Z",
-      "notes": "I enjoyed the fresh grass",
-      "position": {
-        "lat": "55.801280971180454",
-        "lng": "-3.4277343750000004"
-      }
-    },
-    {
-      "id": "9fa1",
-      "cityName": "Peebles",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2024-05-14T18:38:30.274Z",
-      "notes": "I enjoyed the fresh grass",
-      "position": {
-        "lat": "55.801280971180454",
-        "lng": "-3.4277343750000004"
-      }
-    },
-    {
-      "id": "ef75",
-      "cityName": "Peebles",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2024-05-14T18:38:30.274Z",
-      "notes": "I enjoyed the fresh grass",
-      "position": {
-        "lat": "55.801280971180454",
-        "lng": "-3.4277343750000004"
-      }
-    },
-    {
-      "id": "6e2c",
-      "cityName": "Peebles",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2024-05-14T18:38:30.274Z",
-      "notes": "I enjoyed the fresh grass",
-      "position": {
-        "lat": "55.801280971180454",
-        "lng": "-3.4277343750000004"
-      }
-    },
-    {
       "id": "55b2",
       "cityName": "Thiais",
       "country": "France",
@@ -118,6 +58,18 @@
       "position": {
         "lat": "48.76343113791796",
         "lng": "2.3730468750000004"
+      }
+    },
+    {
+      "id": "6d11",
+      "cityName": "Steinsel",
+      "country": "Luxembourg",
+      "emoji": "🇱🇺",
+      "date": "2024-05-14T19:33:34.077Z",
+      "notes": "steinbeck",
+      "position": {
+        "lat": "49.66762782262194",
+        "lng": "6.108398437500001"
       }
     }
   ]
