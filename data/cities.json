@@ -47,6 +47,30 @@
         "lng": -0.141944
       },
       "id": "98443198"
+    },
+    {
+      "id": "b278",
+      "cityName": "Hille",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2024-05-15T14:57:02.470Z",
+      "notes": "Hillesberg",
+      "position": {
+        "lat": "52.32191088594773",
+        "lng": "8.789062500000002"
+      }
+    },
+    {
+      "id": "277d",
+      "cityName": "Middle",
+      "country": "Isle of Man",
+      "emoji": "🇮🇲",
+      "date": "2024-05-15T15:08:22.575Z",
+      "notes": "Was good",
+      "position": {
+        "lat": "54.20101023973888",
+        "lng": "-4.460449218750001"
+      }
     }
   ]
 }
