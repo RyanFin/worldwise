@@ -71,6 +71,18 @@
         "lat": "54.20101023973888",
         "lng": "-4.460449218750001"
       }
+    },
+    {
+      "id": "31f9",
+      "cityName": "Libceves",
+      "country": "Czechia",
+      "emoji": "🇨🇿",
+      "date": "2024-05-15T15:12:56.341Z",
+      "notes": "Since I didn't support lib dems",
+      "position": {
+        "lat": "50.44351305245807",
+        "lng": "13.842773437500002"
+      }
     }
   ]
 }
