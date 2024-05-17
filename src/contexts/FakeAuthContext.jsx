@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
@@ -14,7 +15,7 @@ function reducer(state, action) {
     case "logout":
       return { ...state, user: null, isAuthenticated: false };
     default:
-      throw new Error("Unknown action type...");
+      throw new Error("Unknown action");
   }
 }
 
@@ -26,37 +27,35 @@ const FAKE_USER = {
 };
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, dispatch }] = useReducer(
+  AuthProvider.propTypes = {
+    children: PropTypes.node,
+  };
+  const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
-  //   in the real-world an API call would be made
   function login(email, password) {
-    if (email === FAKE_USER.email && password === FAKE_USER.password) {
+    if (email === FAKE_USER.email && password === FAKE_USER.password)
       dispatch({ type: "login", payload: FAKE_USER });
-    }
-
-    function logout() {
-      dispatch({ type: "logout" });
-    }
-
-    return (
-      // broadcast state to the entire application component tree
-      <AuthContext.Provider value={(user, isAuthenticated, login, logout)}>
-        {children}
-      </AuthContext.Provider>
-    );
   }
+
+  function logout() {
+    dispatch({ type: "logout" });
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-// custom hook
 function useAuth() {
   const context = useContext(AuthContext);
-
-  if (context === undefined) {
-    throw new Error("this context was used outside the auth provider");
-  }
+  if (context === undefined)
+    throw new Error("AuthContext was used outside AuthProvider");
+  return context;
 }
 
 export { AuthProvider, useAuth };
