@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import styles from "./Login.module.css";
 import PageNav from "../components/PageNav/PageNav";
 import { useAuth } from "../contexts/FakeAuthContext";
@@ -7,8 +7,25 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  // const [email, setEmail] = useState("jack@example.com");
+  // const [password, setPassword] = useState("qwerty");
+
+  const initialState = {
+    email: "jack@example.com",
+    password: "qwerty",
+  };
+
+  function reducer(action, state) {
+    switch (action.type) {
+      case "setEmail":
+        return { ...state, email: action.payload };
+
+      case "setPassword":
+        return { ...state, password: action.payload };
+    }
+  }
+
+  const [{ email, password }, dispatch] = useReducer(reducer, initialState);
 
   const { login, isAuthenticated } = useAuth();
 
@@ -41,7 +58,9 @@ export default function Login() {
           <input
             type="email"
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>
+              dispatch({ type: "setEmail", payload: e.target.value })
+            }
             value={email}
           />
         </div>
@@ -51,7 +70,9 @@ export default function Login() {
           <input
             type="password"
             id="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              dispatch({ type: "setPassword", payload: e.target.value })
+            }
             value={password}
           />
         </div>
