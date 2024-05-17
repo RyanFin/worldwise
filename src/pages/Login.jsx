@@ -26,11 +26,11 @@ export default function Login() {
   useEffect(
     function () {
       if (isAuthenticated) {
-        navigate("/app");
+        navigate("/app", { replace: true }); // make the user go back to the main screen when pressing back, regardless of the value of the isAuthenticated state
       }
     },
-    [isAuthenticated]
-  ); //check every time isAuthenticated is changed
+    [isAuthenticated, navigate] //check every time isAuthenticated is changed
+  );
 
   return (
     <main className={styles.login}>
