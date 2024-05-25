@@ -1,6 +1,11 @@
 run:
 	npm i
 	npm run dev
+	
 server:
 	npm run server
-.PHONY: run
+
+build:
+	npm run build
+
+.PHONY: run server build
