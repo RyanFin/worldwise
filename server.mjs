@@ -12,7 +12,12 @@ app.get("/cities", async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch data from json-server" });
+    res
+      .status(500)
+      .json({
+        error: "Failed to fetch data from json-server",
+        url: jsonServerUrl,
+      });
   }
 });
 
