@@ -73,7 +73,10 @@ function CitiesProvider({ children }) {
     initialState
   );
 
+  // const BASE_URL = "https://worldwise-21e419b5768b.herokuapp.com:9000";
   const BASE_URL = "http://localhost:9000";
+  // const BASE_URL =
+  //   "https://raw.githubusercontent.com/RyanFin/worldwise/main/data/cities.json";
   // context values (state)
   // const [cities, setCities] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
@@ -84,6 +87,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
       try {
         // setIsLoading(true);
+        // const res = await fetch(`${BASE_URL}/cities`);
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         dispatch({ type: "cities/loaded", payload: data });

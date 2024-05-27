@@ -26,6 +26,8 @@ function CityList() {
       <Message message="Add your first city by clicking on a city on the map." />
     );
   }
+  console.log("cities");
+  console.log(cities);
 
   return (
     <ul className={styles.cityList}>

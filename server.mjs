@@ -1,30 +1,17 @@
+// server.mjs
+import jsonServer from "json-server";
 import express from "express";
-import fetch from "node-fetch";
+import path from "path";
 
 const app = express();
-const jsonServerUrl = process.env.JSON_SERVER_URL || "http://localhost:9000";
+const router = jsonServer.router(path.join(__dirname, "data", "cities.json"));
+const middlewares = jsonServer.defaults();
 
-console.log(jsonServerUrl);
+const PORT = process.env.PORT || 9000;
 
-// Define a route for the root URL
-app.get("/", (req, res) => {
-  res.send("Welcome to the main application!");
-});
+app.use(middlewares);
+app.use(router);
 
-app.get("/data", async (req, res) => {
-  try {
-    const response = await fetch(`${jsonServerUrl}/cities`);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({
-      error: "Failed to fetch data from json-server",
-      url: jsonServerUrl,
-    });
-  }
-});
-
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Main app listening on port ${PORT}`);
+  console.log(`JSON Server is running on port ${PORT}`);
 });
