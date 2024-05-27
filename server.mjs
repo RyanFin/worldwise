@@ -4,6 +4,8 @@ import fetch from "node-fetch";
 const app = express();
 const jsonServerUrl = process.env.JSON_SERVER_URL || "http://localhost:9000";
 
+console.log(jsonServerUrl);
+
 app.get("/cities", async (req, res) => {
   try {
     const response = await fetch(`${jsonServerUrl}/cities`);
