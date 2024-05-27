@@ -4,9 +4,9 @@ import fetch from "node-fetch";
 const app = express();
 const jsonServerUrl = process.env.JSON_SERVER_URL || "http://localhost:9000";
 
-app.get("/api/data", async (req, res) => {
+app.get("/cities", async (req, res) => {
   try {
-    const response = await fetch(`${jsonServerUrl}/your-endpoint`);
+    const response = await fetch(`${jsonServerUrl}/cities`);
     const data = await response.json();
     res.json(data);
   } catch (error) {
