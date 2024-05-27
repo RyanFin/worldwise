@@ -6,18 +6,21 @@ const jsonServerUrl = process.env.JSON_SERVER_URL || "http://localhost:9000";
 
 console.log(jsonServerUrl);
 
-app.get("/cities", async (req, res) => {
+// Define a route for the root URL
+app.get("/", (req, res) => {
+  res.send("Welcome to the main application!");
+});
+
+app.get("/data", async (req, res) => {
   try {
     const response = await fetch(`${jsonServerUrl}/cities`);
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        error: "Failed to fetch data from json-server",
-        url: jsonServerUrl,
-      });
+    res.status(500).json({
+      error: "Failed to fetch data from json-server",
+      url: jsonServerUrl,
+    });
   }
 });
 
