@@ -1,2 +1,1 @@
-web: node server.js
-json-server: json-server --watch data/cities.json --port 9000 
+web: npm start && npm run json-server
