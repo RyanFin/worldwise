@@ -1,16 +1,13 @@
-import path from "path";
 import jsonServer from "json-server";
-const { create, defaults, router } = jsonServer;
-
-const server = create();
-const dataPath = path.join(__dirname, "data", "cities.json");
-const jsonRouter = router(dataPath);
-const middlewares = defaults();
+const server = jsonServer.create();
+const router = jsonServer.router("data/cities.json");
+const middlewares = jsonServer.defaults({ static: "./build" });
+// on Heroku port if defined or port 9000 by default
 const port = process.env.PORT || 9000;
 
+// assign values to the server
 server.use(middlewares);
-server.use(jsonRouter);
+server.use(router);
 
-server.listen(port, () => {
-  console.log(`JSON Server is running on port ${port}`);
-});
+// run json-server at target port
+server.listen(port);
